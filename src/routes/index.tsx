@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, ArrowUp, Download, Github, Menu, X, MapPin, GraduationCap, Languages, Code2, GitBranch, Check, Star, Award, BookOpen, Mail, Phone, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { CodeVisual, CalculatorVisual, PythonMark } from "@/components/portfolio-visuals";
+import { CalculatorVisual, PythonMark } from "@/components/portfolio-visuals";
 import { profile, projects, resumeUrl } from "@/lib/portfolio";
+import portraitAsset from "@/assets/naga-portrait.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Portfolio,
@@ -67,7 +68,10 @@ function Portfolio() {
             <div className="hero-actions"><Button asChild><a href="#projects">Explore My Projects<ArrowUpRight/></a></Button><Button variant="outline" asChild><a href="#contact">Contact Me<ArrowRight/></a></Button></div>
             <a className="github-link" href={profile.github} {...externalProps}><Github size={14}/>View GitHub Profile<ArrowUpRight size={12}/></a>
           </div>
-          <CodeVisual/>
+          <figure className="portrait-scene">
+            <img src={portraitAsset.url} alt="Portrait of Naga Chaithanya" className="portrait-image" width={900} height={1125} />
+            <figcaption className="portrait-caption"><span className="status-dot"/>{profile.name} · Vadlamudi, Andhra Pradesh</figcaption>
+          </figure>
         </div>
         <div className="hero-bottom"><span><MapPin/>Vadlamudi, Andhra Pradesh, India</span><span><GraduationCap/>Diploma CSE Student · Aspiring Python Developer</span></div>
       </section>
