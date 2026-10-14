@@ -265,6 +265,8 @@
   .python-tile span { font-size: 6px; }
   .scene-caption { font-size: 6px; left: 7px; }
   .hero-bottom { font-size: 8px; gap: 15px; align-items: flex-start; }
+  .portrait-scene { width: min(100%, 330px); }
+  .portrait-caption { font-size: 8px; }
   .hero-bottom span:last-child { max-width: 125px; text-align: right; }
   .section { padding: 45px 0; }
   .section h2 { font-size: 25px; }
