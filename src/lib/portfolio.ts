@@ -1,6 +1,7 @@
 // Connect the final resume PDF here once the owner supplies it.
 import nptelCertificate from "@/assets/nptel-certificate.jpg.asset.json";
 import coordinatorCertificate from "@/assets/coordinator-certificate.jpg.asset.json";
+import apssdcCertificate from "@/assets/apssdc-certificate.png.asset.json";
 
 export const resumeUrl: string | null = null;
 export const profile = {
@@ -27,12 +28,16 @@ export type Certificate = {
 };
 
 // Only certificates backed by the owner's real documents are listed here.
-// The APSSDC internship has no document image yet — add one when supplied.
 export const certificates: Certificate[] = [
   {
     provider: "APSSDC",
     title: "Python Summer Internship",
-    result: ["Internship training"],
+    result: ["Python Programming", "Certificate of Completion"],
+    session: "8 June – 8 July 2026",
+    image: {
+      url: apssdcCertificate.url,
+      alt: "APSSDC Certificate of Completion awarded to Aramalla Naga Chaithanya of Vignan University for Python Programming under the Summer Online Internship 2026, from 8 June to 8 July 2026",
+    },
   },
   {
     provider: "NPTEL · IIT Madras",
