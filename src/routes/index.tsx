@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, ArrowUpRight, ArrowUp, Download, Github, Menu, X, MapPin, GraduationCap, Languages, Code2, GitBranch, Check, Star, Award, BookOpen, Mail, Phone, Briefcase } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ArrowUp, Download, Github, Menu, X, MapPin, GraduationCap, Languages, Code2, GitBranch, Check, Star, Award, Mail, Phone, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CalculatorVisual, PythonMark } from "@/components/portfolio-visuals";
-import { profile, projects, resumeUrl } from "@/lib/portfolio";
+import { profile, projects, certificates, resumeUrl } from "@/lib/portfolio";
 import portraitAsset from "@/assets/naga-portrait.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
