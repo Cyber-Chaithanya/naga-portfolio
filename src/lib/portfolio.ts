@@ -1,9 +1,10 @@
-// Connect the final resume PDF here once the owner supplies it.
+import resumePdf from "@/assets/resume.pdf.asset.json";
 import nptelCertificate from "@/assets/nptel-certificate.jpg.asset.json";
 import coordinatorCertificate from "@/assets/coordinator-certificate.jpg.asset.json";
 import apssdcCertificate from "@/assets/apssdc-certificate.png.asset.json";
 
-export const resumeUrl: string | null = null;
+// Owner's real internship resume PDF, converted from the supplied DOCX.
+export const resumeUrl: string | null = resumePdf.url;
 export const profile = {
   name: "Naga Chaithanya",
   email: "aramallaabhiram@gmail.com",
