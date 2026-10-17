@@ -4,8 +4,9 @@ import { ArrowRight, ArrowUpRight, ArrowUp, Download, Github, Menu, X, MapPin, G
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CalculatorVisual, PythonMark } from "@/components/portfolio-visuals";
-import { profile, projects, certificates, resumeUrl } from "@/lib/portfolio";
+import { profile, projects, certificates, resumeUrl, type Project } from "@/lib/portfolio";
 import portraitAsset from "@/assets/naga-portrait.jpg.asset.json";
+import { ProjectVisual } from "@/components/portfolio-visuals";
 
 export const Route = createFileRoute("/")({
   component: Portfolio,
@@ -30,6 +31,38 @@ function ResumeButton({ className = "" }: { className?: string }) {
   return <span title="Resume PDF has not been provided yet"><Button variant="outline" className={`resume-button ${className}`} disabled aria-label="Download Resume — PDF not yet provided"><Download/>Download Resume</Button></span>;
 }
 function SectionLabel({ children }: { children: React.ReactNode }) { return <div className="section-label">{children}</div>; }
+
+function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
+  return <article className={`project-card ${featured ? "project-card--featured" : "project-card--compact"}`}>
+    {project.visual === "calculator"
+      ? <CalculatorVisual/>
+      : <ProjectVisual kind={project.visual} name={project.name} technologies={project.technologies} features={project.features}/>}
+    <div className="project-copy">
+      <div className="featured-label">{featured && <Star size={12}/>} {featured ? "FEATURED PROJECT" : "GITHUB PROJECT"}</div>
+      <h3>{project.name}</h3>
+      <p>{project.description}</p>
+      <div className="tags">{project.technologies.map(technology => <span key={technology}>{technology}</span>)}</div>
+      <ul className="project-features">{project.features.map(feature => <li key={feature}><Check/>{feature}</li>)}</ul>
+      <div className="project-actions">
+        <Button variant="outline" asChild><a href={project.source} {...externalProps}><Github/>View Source Code<ArrowUpRight/></a></Button>
+        <Dialog>
+          <DialogTrigger asChild><Button variant="ghost">Project Details<ArrowRight/></Button></DialogTrigger>
+          <DialogContent className="portfolio-modal">
+            <div className="featured-label">{project.technologies.join(" / ").toUpperCase()} PROJECT</div>
+            <DialogTitle>{project.name}</DialogTitle>
+            <DialogDescription className="leading-relaxed">{project.description}</DialogDescription>
+            <p className="modal-note">{project.details}</p>
+            <h3 className="text-sm font-semibold">Project features</h3>
+            <ul className="project-features">{project.features.map(feature => <li key={feature}><Check/>{feature}</li>)}</ul>
+            {project.accuracyNote && <p className="modal-note">{project.accuracyNote}</p>}
+            <Button asChild><a href={project.source} {...externalProps}><Github/>View Source Code<ArrowUpRight/></a></Button>
+          </DialogContent>
+        </Dialog>
+      </div>
+    </div>
+  </article>;
+}
+
 function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("home");
@@ -81,7 +114,8 @@ function Portfolio() {
       </div></section>
       <section id="skills" className="section"><div className="container"><SectionLabel>02 / Technical skills</SectionLabel><h2>A focused foundation.</h2><p className="section-subtitle">The tools I’m using as I build my programming skills.</p><div className="skills-grid"><div className="skill-category"><h3>PROGRAMMING</h3><div className="skill-items"><div className="skill-item"><PythonMark/>Python</div><div className="skill-item"><span className="c-icon">C</span>C fundamentals</div></div></div><div className="skill-category"><h3>TOOLS & VERSION CONTROL</h3><div className="skill-items"><div className="skill-item"><GitBranch className="git-icon"/>Git</div><div className="skill-item"><Github/>GitHub</div></div></div></div></div></section>
       <section id="projects" className="section"><div className="container"><div className="section-heading-row"><div><SectionLabel>03 / Selected work</SectionLabel><h2>Learning by building.</h2><p className="section-subtitle">A practical project. A step forward.</p></div><a className="text-link" href={profile.github} {...externalProps}>View GitHub<ArrowUpRight size={14}/></a></div>
-        {projects.map(project => <article className="project-card" key={project.name}><CalculatorVisual/><div className="project-copy"><div className="featured-label"><Star size={12}/>FEATURED PROJECT</div><h3>{project.name}</h3><p>{project.description}</p><div className="tags">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div><ul className="project-features">{["Arithmetic, decimals & parentheses", "Common arithmetic operators", "Division-by-zero handling"].map(feature => <li key={feature}><Check/>{feature}</li>)}</ul><div className="project-actions"><Button variant="outline" asChild><a href={project.source} {...externalProps}><Github/>View Source Code<ArrowUpRight/></a></Button><Dialog><DialogTrigger asChild><Button variant="ghost">Project Details<ArrowRight/></Button></DialogTrigger><DialogContent className="portfolio-modal"><div className="featured-label">PYTHON / GUI PROJECT</div><DialogTitle>{project.name}</DialogTitle><DialogDescription className="leading-relaxed">{project.description}</DialogDescription><p className="modal-note">Built with Python and Tkinter, this project turns arithmetic expressions into results through a graphical interface. Its source includes a tokenizer and expression parser.</p><h3 className="text-sm font-semibold">Implemented features</h3><ul className="project-features">{project.features.map(feature => <li key={feature}><Check/>{feature}</li>)}</ul><p className="modal-note">The calculator shown on this portfolio is an illustrative representation, not a screenshot of the actual application.</p><Button asChild><a href={project.source} {...externalProps}><Github/>View Source Code<ArrowUpRight/></a></Button></DialogContent></Dialog></div></div></article>)}
+        {projects[0] && <ProjectCard project={projects[0]} featured/>}
+        {projects.length > 1 && <div className="projects-grid">{projects.slice(1).map(project => <ProjectCard key={project.name} project={project}/>)}</div>}
       </div></section>
       <section id="certifications" className="section"><div className="container"><SectionLabel>04 / Certifications & training</SectionLabel><h2>Investing in the fundamentals.</h2><p className="section-subtitle">Structured learning to support hands-on practice.</p><div className="credentials-grid">{certificates.map(certificate => <article className="credential" key={certificate.title}>{certificate.image ? <Dialog><DialogTrigger asChild><button type="button" className="credential-thumb" aria-label={`View certificate: ${certificate.title} — ${certificate.provider}`}><img src={certificate.image.url} alt={certificate.image.alt} loading="lazy" width={1754} height={1241} /><span className="credential-thumb-label">View certificate<ArrowUpRight size={11}/></span></button></DialogTrigger><DialogContent className="certificate-modal"><div className="featured-label">CERTIFICATE</div><DialogTitle>{certificate.title}</DialogTitle><DialogDescription>{certificate.provider} · {certificate.result.join(" · ")}{certificate.session ? ` · ${certificate.session}` : ""}</DialogDescription><img src={certificate.image.url} alt={certificate.image.alt} /></DialogContent></Dialog> : <div className="credential-icon"><Award/></div>}<div className="credential-body"><p className="credential-provider">{certificate.provider}</p><h3>{certificate.title}</h3><p className="credential-result">{certificate.elite ? <><span className="elite">{certificate.result[0]}</span><span>·</span><span>{certificate.result[1]}</span></> : certificate.result.join(" · ")}</p>{certificate.session && <p className="credential-session">{certificate.session}</p>}</div></article>)}</div></div></section>
       <section id="education" className="section"><div className="container education-grid"><div><SectionLabel>05 / Education</SectionLabel><h2>Where it all starts.</h2><div className="education-detail"><GraduationCap/><div><h3>Diploma in Computer Science and Engineering</h3><p>Vignan University<br/>Vadlamudi, Andhra Pradesh, India</p><div className="education-meta"><span>Expected completion: <strong>2028</strong></span><span>Academic score: <strong>89.50%</strong></span></div></div></div></div><div className="campus"><SectionLabel>Campus involvement</SectionLabel><h3>Prompt Engineering Coordinator</h3><p>College campus responsibility — recognized with a Certificate of Appreciation at Agentic AI Day 2026, 29 August 2026.</p></div></div></section>

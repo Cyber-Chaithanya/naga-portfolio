@@ -1,4 +1,5 @@
-import { Code2, Calculator, Minus, Square, X } from "lucide-react";
+import { Building2, Calculator, Code2, GraduationCap, Minus, ShieldCheck, Square, X } from "lucide-react";
+import type { ProjectVisualKind } from "@/lib/portfolio";
 
 export function PythonMark({ className = "" }: { className?: string }) {
   return <svg viewBox="0 0 64 64" className={className} aria-hidden="true"><path className="python-top" d="M31 5C17 5 17 11 17 11v8h16v3H11S4 21 4 34s7 13 7 13h8V36s0-8 8-8h17s7 0 7-8v-8s1-7-20-7Zm-8 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/><path className="python-bottom" d="M33 59c14 0 14-6 14-6v-8H31v-3h22s7 1 7-12-7-13-7-13h-8v11s0 8-8 8H20s-7 0-7 8v8s-1 7 20 7Zm8-5a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>;
@@ -32,5 +33,29 @@ export function CalculatorVisual() {
       <div className="calculator-keys">{["C", "(", ")", "÷", "7", "8", "9", "×", "4", "5", "6", "−", "1", "2", "3", "+", "±", "0", ".", "="].map((key, i) => <span key={key} className={key === "=" ? "calc-key calc-equals" : i % 4 === 3 ? "calc-key calc-operator" : key === "C" ? "calc-key calc-clear" : "calc-key"}>{key}</span>)}</div>
     </div>
     <span className="mockup-caption">ILLUSTRATIVE INTERFACE · NOT AN APPLICATION SCREENSHOT</span>
+  </div>;
+}
+
+export function ProjectVisual({ kind, name, technologies, features }: {
+  kind: Exclude<ProjectVisualKind, "calculator">;
+  name: string;
+  technologies: string[];
+  features: string[];
+}) {
+  const visualDetails = {
+    password: { icon: ShieldCheck, label: "PASSWORD RULE CHECKS" },
+    feedback: { icon: GraduationCap, label: "UNIVERSITY FEEDBACK" },
+    website: { icon: Building2, label: "STATIC HTML & CSS SITE" },
+  }[kind];
+  const Icon = visualDetails.icon;
+
+  return <div className={`project-illustration project-illustration--${kind}`} role="img" aria-label={`${name}, illustrative project overview`}>
+    <div className="project-illustration-heading">
+      <span className="project-illustration-icon"><Icon/></span>
+      <span><small>GITHUB PROJECT</small><strong>{visualDetails.label}</strong></span>
+    </div>
+    <div className="project-illustration-tags">{technologies.map(technology => <span key={technology}>{technology}</span>)}</div>
+    <ul>{features.slice(0, 3).map(feature => <li key={feature}>{feature}</li>)}</ul>
+    <span className="project-illustration-caption">ILLUSTRATIVE OVERVIEW · NOT A SCREENSHOT</span>
   </div>;
 }

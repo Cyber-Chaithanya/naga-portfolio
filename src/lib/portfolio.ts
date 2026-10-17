@@ -11,13 +11,61 @@ export const profile = {
   phone: "9948525965",
   github: "https://github.com/Cyber-Chaithanya",
 };
-export const projects = [{
-  name: "Smart Calculator",
-  description: "A Python-based graphical calculator designed to evaluate arithmetic expressions through a user-friendly interface.",
-  technologies: ["Python", "GUI"],
-  source: "https://github.com/Cyber-Chaithanya/Smart-Calculator",
-  features: ["Arithmetic calculations", "Decimal values", "Parentheses in expressions", "Support for common arithmetic operators", "Handling of division-by-zero cases"],
-}];
+
+export type ProjectVisualKind = "calculator" | "password" | "feedback" | "website";
+
+export type Project = {
+  name: string;
+  description: string;
+  details: string;
+  accuracyNote?: string;
+  technologies: string[];
+  source: string;
+  features: string[];
+  visual: ProjectVisualKind;
+};
+
+export const projects: Project[] = [
+  {
+    name: "Smart Calculator",
+    description: "A Python-based graphical calculator designed to evaluate arithmetic expressions through a user-friendly interface.",
+    details: "Built with Python and Tkinter, this project evaluates arithmetic expressions through a graphical interface. The repository includes a tokenizer and expression parser.",
+    accuracyNote: "The calculator illustration is not a screenshot of the actual application.",
+    technologies: ["Python", "GUI"],
+    source: "https://github.com/Cyber-Chaithanya/Smart-Calculator",
+    features: ["Arithmetic, decimals & parentheses", "Common arithmetic operators", "Division-by-zero handling"],
+    visual: "calculator",
+  },
+  {
+    name: "Password Strength Checker",
+    description: "A beginner-friendly Python command-line checker that tests passwords against length and character-type requirements.",
+    details: "Checks for a length between 12 and 32 characters, an uppercase and lowercase letter, a digit, and a special character. It can check multiple entries in one run.",
+    accuracyNote: "These rule checks do not assess password reuse, exposure, or guessability. Do not use real passwords while testing.",
+    technologies: ["Python", "Command line"],
+    source: "https://github.com/Cyber-Chaithanya/password_strength_checker",
+    features: ["12–32 character length check", "Uppercase, lowercase, digit & symbol checks", "Reports missing rules and allows repeat checks"],
+    visual: "password",
+  },
+  {
+    name: "UniFeedback — University Feedback Platform",
+    description: "A React and TypeScript university-feedback prototype with role-based views and demo mode.",
+    details: "The repository README lists Student, Faculty, Parent, and Admin views, feedback submission, dashboards, and admin review tools. Its demo uses local mock data.",
+    accuracyNote: "This is a GitHub prototype; its README describes an offline demo using local mock data.",
+    technologies: ["React", "TypeScript"],
+    source: "https://github.com/Cyber-Chaithanya/Vigana-Feedback",
+    features: ["Student, faculty, parent & admin demo roles", "Feedback submission and per-user views", "Admin inbox and report tools listed in the README"],
+    visual: "feedback",
+  },
+  {
+    name: "My First Website",
+    description: "An early HTML and CSS practice site introducing student and small-business services.",
+    details: "A simple static page with an introduction, a list of services, and contact information.",
+    technologies: ["HTML", "CSS"],
+    source: "https://github.com/Cyber-Chaithanya/my-first-website",
+    features: ["Single-page HTML layout", "Basic CSS styling", "Service-list content"],
+    visual: "website",
+  },
+];
 
 export type Certificate = {
   provider: string;
