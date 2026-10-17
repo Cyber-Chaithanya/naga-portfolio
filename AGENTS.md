@@ -12,3 +12,4 @@
 - Keep the portfolio as one scrolling index page with accessible section anchors because its navigation is explicitly section-based.
 - Keep owner contact details, project entries, and the nullable resume URL in the shared portfolio configuration so updates do not require redesigning the presentation.
 - Treat code and calculator compositions as illustrative visual components, not screenshots or interactive applications, to keep project claims accurate.
+- Select project illustrations from each entry's typed visual category so projects never display a mismatched mockup.
