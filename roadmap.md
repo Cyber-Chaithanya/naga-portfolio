@@ -5,4 +5,4 @@
 - [x] Connect the supplied resume PDF to the download buttons.
 - [x] Add every remaining public GitHub repository to the projects section.
 - [x] Verify repository links, project details, and responsive project cards.
-- [ ] Recheck public GitHub repositories and refresh project links and details.
+- [x] Recheck public GitHub repositories and refresh project links and details.
