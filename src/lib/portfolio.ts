@@ -49,10 +49,10 @@ export const projects: Project[] = [
   {
     name: "UniFeedback — University Feedback Platform",
     description: "A React and TypeScript university-feedback prototype with role-based views and demo mode.",
-    details: "The repository README lists Student, Faculty, Parent, and Admin views, feedback submission, dashboards, and admin review tools. Its demo uses local mock data.",
-    accuracyNote: "This is a GitHub prototype; its README describes an offline demo using local mock data.",
+    details: "The project documentation describes Student, Faculty, Parent, and Admin demo roles, feedback submission, role-based views, and admin analytics and review tools. It also describes an offline demo using local mock data.",
+    accuracyNote: "This is a GitHub prototype. Its project documentation describes an offline demo using local mock data; production behavior has not been verified.",
     technologies: ["React", "TypeScript"],
-    source: "https://github.com/Cyber-Chaithanya/Vigana-Feedback",
+    source: "https://github.com/Cyber-Chaithanya/Vignan-Feedback",
     features: ["Student, faculty, parent & admin demo roles", "Feedback submission and per-user views", "Admin inbox and report tools listed in the README"],
     visual: "feedback",
   },

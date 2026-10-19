@@ -7,7 +7,7 @@ describe("portfolio GitHub projects", () => {
     expect(projects.map(({ source }) => source)).toEqual([
       "https://github.com/Cyber-Chaithanya/Smart-Calculator",
       "https://github.com/Cyber-Chaithanya/password_strength_checker",
-      "https://github.com/Cyber-Chaithanya/Vigana-Feedback",
+      "https://github.com/Cyber-Chaithanya/Vignan-Feedback",
       "https://github.com/Cyber-Chaithanya/my-first-website",
     ]);
   });
